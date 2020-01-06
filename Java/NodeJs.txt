@@ -1,0 +1,39 @@
+Windows 上安装 Node.js
+32 位安装包下载地址 : https://nodejs.org/dist/v4.4.3/node-v4.4.3-x86.msi
+
+64 位安装包下载地址 : https://nodejs.org/dist/v4.4.3/node-v4.4.3-x64.msi
+
+
+PATH=C:\Python27\;C:\Python27\Scripts;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;D:\Development\Tool\Git\cmd;C:\ProgramData\chocolatey\bin;C:\WINDOWS\System32\OpenSSH\;D:\Development\JDK\jdk1.8.0_45\bin;apache-maven-3.6.1\bin;D:\Development\Tool\nodejs\;C:\Users\Ghaya\AppData\Local\Microsoft\WindowsApps;C:\Users\Ghaya\AppData\Roaming\npm
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

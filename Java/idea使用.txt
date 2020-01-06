@@ -1,0 +1,17 @@
+show execution point显示执行点
+step over跨步
+step into单步执行
+force step into 强行进入
+step out退出
+drop frame放置框架
+
+
+
+
+
+
+
+执行到光标处
+
+ctrl+alt+b  找接口实现 
+alt+insert  创建文件快捷键
