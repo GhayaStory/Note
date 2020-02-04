@@ -69,6 +69,57 @@ O
 
 
 
+修改后
+三星512G固态
+	O：
+		Games（）
+		JX3（剑三）
+		VMware(虚拟机)
+
+希捷2T
+	D：
+		Mieゲーム（核心游戏）
+		New（其他筛选）
+		Users （我的文档等系统储存位置）
+		Xunlei（迅雷筛选）	XunLei（迅雷下载，可分解）
+		雷电模拟器
+		桌面（分解/保留用作rock桌面插件的使用旧参考/保留作为win10 win菜单的参照）
+	E：
+		Development（开发相关）
+		Game（旧的一些单机游戏）
+		GhayaDown（一般下载暂存）
+		Ghaya_Install（安装下载等）SysMoe（系统萌化，可分解，短期不用）
+		Mie（旧的一些资源）
+		NVIDIA2（暂不明）
+		Program Files（普通软件）Software（软件，可分解）
+		Program Files (x86)（普通软件）
+	F：
+		Program Files (x86)（360zip，可分解）
+		Sys（系统安装相关，镜像等）
+		
+
+西数4T
+	L：
+		Mieゲーム（核心游戏）
+		Video（XGameBox 录屏）
+		Xunlei（迅雷下载，可分解）
+		桌面
+	M：
+		500G(预计存在西数500G盘中的预留)
+		Ghaya（course/G_3）
+			Course（教程视频）
+		New（G）
+		Anime(Anime)
+	
+西数2T（//等着修坏道）
+	Z：
+		*
+西数500G
+	Z:
+		*
+
+
+
 
 
 
