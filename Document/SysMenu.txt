@@ -75,6 +75,7 @@ O
 		Games（）
 		JX3（剑三）
 		VMware(虚拟机)
+		Premiere
 
 希捷2T
 	D：
@@ -117,6 +118,72 @@ O
 西数500G
 	Z:
 		*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Desgin
+软件分类Software
+	1_SystemInstall 系统安装
+	2_Drive 驱动系统服务功能驱动等
+	3_Process 处理（基础以上的）
+	4_Application 应用（基本其他所有）
+	5_Game 游戏
+	6_Development 开发软件（工作需要单独分类，本应属处理分类）
+	
+	执行命令：
+	mkdir 1_SystemInstall 2_Drive 3_Process 4_Application 5_Game 6_Development
+	echo 系统安装 > E:/Ghaya_Install/Tool/1_SystemInstall/_系统安装
+	echo 驱动系统服务功能驱动等 > E:/Ghaya_Install/Tool/2_Drive/_驱动系统服务功能驱动等
+	echo 处理（基础以上的） > E:/Ghaya_Install/Tool/3_Process/_处理（基础以上的）
+	echo 应用（基本其他所有） > E:/Ghaya_Install/Tool/4_Application/_应用（基本其他所有）
+	echo 游戏 > E:/Ghaya_Install/Tool/5_Game/_游戏
+	echo 开发软件（工作需要单独分类，本应属处理分类） > E:/Ghaya_Install/Tool/6_Development/_开发软件（工作需要单独分类，本应属处理分类）
+	
+
+	
+软件阶段分析
+	系统安装
+	进入系统后驱动等
+	
+
+
+	
+	
+游戏分类Game
+	ADV（文字剧情游戏）
+	ACT
+	SLG
+	G
+
+
+
+动漫分类Anime
+
+
+G分类
+	
+	
+	
+	
+	
+
+	
+	
+
+
 
 
 
