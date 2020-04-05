@@ -1,2 +1,40 @@
 2020年1月26日11点03分
 4
+
+
+temp development
+
+
+
+
+
+学籍管理：
+直接调用申请方法
+type=1 班主任
+status=0 待审核
+年纪班级座号修改
+
+
+
+转入调班审核
+queryIntoClass()
+条件：
+type=1 班主任
+newClass = myClass
+
+
+
+操作
+通过：status=0->1
+不通过：status=0->2  backup = "拒绝理由"
+
+转出调班申请
+queryOutClass()
+type=1 班主任
+oldClass = myClass
+
+操作
+撤回：status=0 -> 4  待审核->待核对提交
+提交：status=4 -> 0  
+修改：年纪班级座号修改
+删除：status=4 -> 2 backup = "申请人取消申请"
