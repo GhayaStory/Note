@@ -1,0 +1,28 @@
+applicant: 61
+applicantName: "纳智"
+applicationTime: (6) [2020, 3, 26, 18, 10, 42]
+applicationTimeStr: "2020-03-26 18:10:42"
+approvalTime: null
+approvalTimeStr: null
+approver: null
+approverName: null
+batchTransferId: 1
+bizType: 1
+id: 3
+idCard: "350102199304164397"
+newClassId: 2
+newClassName: "二班"
+newGradeId: 1
+newGradeName: "一年级"
+originalClassId: 1
+originalClassName: "一班"
+originalGradeId: 1
+originalGradeName: "一年级"
+remark: null
+seat: 2
+status: 0
+studentId: 2
+studentName: "李小贝"
+studentNumber: "1171004100119"
+termId: 85
+type: 2

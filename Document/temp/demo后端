@@ -1,0 +1,189 @@
+
+-----------------------------------------------------后端常用参数
+@RestController
+@RequestMapping("_url")
+public class _clNameCon {}
+
+@Service
+public class StudentTransferClassService {}
+
+@FeignClient("service-school")
+@RequestMapping("/serUrl")
+public interface _clNameSer {}
+
+
+private static Logger logger = LoggerFactory.getLogger(_clNameSer.class);
+@Autowired
+UseService useService;
+
+/**
+ * 跳转到学籍流转记录
+ *
+ * @return
+ */
+@RequestMapping("/index")
+public ModelAndView index() {
+	return new ModelAndView("school/studentStatusRecord");
+}
+-----------------------------------------------------UIController
+/**
+ * _functext
+ */
+@RequestMapping("/_func")
+@ResponseBody
+public ReturnResult _func(
+												@RequestBody Map param,
+												@RequestParam("key") String key,
+												@RequestParam("pageNo") String pageNo,
+												@RequestParam("pageSize") String pageSize,
+												@RequestAttribute AuthUser authUser) {
+	HashMap<String, Object> map = new HashMap<>();
+	param.put("schoolId", authUser.getSchoolId());
+	param.put("curYearId", authUser.getCurrentYearId());
+	param.put("curTermId", authUser.getCurrentTermId());
+	param.put("userId", authUser.getId());
+	param.put("userName", authUser.getUsername());
+	param.put("pageNo", pageNo);
+	param.put("pageSize", pageSize);
+	param.put("id", param.get("id"));
+
+
+	ReturnResult result = tempService._func(map);
+	return result;
+}
+
+-----------------------------------------------------UIIService
+
+/**
+ * _functext
+ */
+@RequestMapping("/_func")
+@ResponseBody
+ReturnResult _func(@RequestBody Map<String, Object> map,
+				   @RequestParam("id") String id);
+-----------------------------------------------------svController
+/**
+ * _functext
+ */
+@RequestMapping("/_func")
+ReturnResult _func(@RequestBody Map<String, Object> map) {
+	ReturnResult result = new ReturnResult();
+	String strError = "操作失败";
+	try {
+		result = tempService._func(map, "3");
+	} catch (Exception e) {
+		e.printStackTrace();
+		result.setCode(-1);
+		result.setMsg(e.getMessage());
+		logger.error(e.getMessage());
+	}
+	result.setNote((result.getNote() == null || "".equals(result.getNote())) ? strError : result.getNote());
+	return result;
+}
+
+-----------------------------------------------------svService
+
+
+/**
+ * _functext
+ *
+ * @param map
+ * @return
+ * @throws Exception
+ */
+@Transactional
+public ReturnResult _func(Map<String, Object> map) throws Exception {
+	ReturnResult result = new ReturnResult();
+	Integer userId = Integer.parseInt(map.get("userId").toString());
+	String type = map.get("type").toString();
+
+	logger.info("debug");
+	boolean save_StudentTransferClass = iStudentTransferClassService.save(studentTransferClass);
+	if (!save_StudentTransferClass) {
+		TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();//触发回滚
+		result.setCode(-1);
+		result.setNote("操作失败");
+		return result;
+	}
+
+	result.setNote("操作成功");
+	result.setCode(1);
+	return result;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,217 @@
+需求优化开发说明
+1.所有基础服务都在service-auth、service-common、service-school服务下做开发；原有xgn_nz_common工程下的类暂时不改动，
+新的工具类以及实体类统一在common工程下定义。详见已有部分代码
+2.feign接口代码统一定义在fegin包下，详见已有部分代码
+2.原有的UI服务只做前端转发以及接口编写，具体业务写在对应的服务
+3.原则上一个服务对应一个数据库，不进行跨库，有特殊需求再讨论
+4.原有的服务不做改动，都在新服务上进行开发
+5.ui包、类编写按照超管端包名以manage开发，校端以teacher开头,原有的接口不做改动。详见已有部分代码
+6.前端代码直接在原有功能上做修改
+
+/**
+ * Created by xuzy on 2020/03/17.
+ */
+
+
+studentStatusRecord
+
+
+记得修改学年学期（byschool 删掉）
+记得搞模板下载
+导入修改怎么办
+
+http://192.168.50.249/Tother/M00/00/00/wKgy-V6EBeSALPQDAABUAEnMxA8241.xls
+
+@Value("${fdfs.customeParam.url}")
+    private String fdfsVisitUrl;
+	
+
+学生信息管理申请流转	type=1 待审核1
+流转记录（班主任）		只展示type=1  自己班级的数据
+转入调班审核type=1 newGradeId&newClassId = 自己班
+转入调班审核	通过		通过2
+转入调班审核	不通过		不通过3
+转入调班审核type=1 oldGradeId&oldClassId = 自己班
+转出调班记录	通过		通过2		到转入调班审核
+转出调班记录	通过		通过2		撤回		待核对提交4		通过/不通过
+转出调班记录	不通过		不通过3
+审批后在流转管理显示
+
+学籍流转管理			展示全部
+申请		type=2 待审核1
+确认		通过2
+撤销		不通过3
+
+
+
+
+
+状态（1待审核2通过3不通过4待核对提交）
+
+116.62.212.10:22122
+http://www.nazhisoft.com/uiStudentEnroll/exportStudentQRcode?gradeId=1&classId=1&code=1
+http://www.nazhisoft.com/uiStudentEnroll/exportStudentQRcode?gradeId=1&classId=1&code=2
+192.168.50.249/
+TpersonImg/M00/00/00/wKgy-V5wOQ2AR2FmAADDK_K1IDg930.zip
+
+
+D:\Development\Java\IdeaWorkSpace\nz2.0\smart_campus\xgn_nz_common\src\main\java\com\xgn\nz\common\bean\BasePO.java
+
+
+FileController
+	UploadFile
+		BasePO
+	UploadImage
+	Base64Image
+	UploadImage
+FileService
+ParentController
+
+
+INSERT INTO `sc_common`.`t_attachment` (`id`, `path`, `name`, `creation_time`) VALUES (NULL, NULL, NULL, NULL);
+
+
+smart_campus_ui\src\main\resources\static\js\common\nzfe.form.js ：78
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

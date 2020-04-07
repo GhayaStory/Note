@@ -1,0 +1,48 @@
+
+前端
+-----------------------------------------------------按钮绑定
+$("#btn", $mainContainer).unbind().bind("click", function () {
+	
+});
+-----------------------------------------------------弹窗
+layer.open({
+	type: 1,
+	title: '_Title',
+	area: ['60%', '80%'],//宽，高
+	shadeClose: false, //点击遮罩关闭
+	//closeBtn: 0, //不显示关闭按钮
+	fix: false,
+	scrollbar: false,
+	content: $("#winSingleStudentChangeClass", $mainContainer),
+	zIndex: 10,
+	success: function (layero, index) {
+		//……
+		layer.close(index);
+	}, end: function () {//无论是确认还是取消，只要层被销毁了，end都会执行，不携带任何参数。layer.open关闭事件
+		$('input[name_="member"],select[name_="member"]').each(function (index, cur) {
+			$(cur).removeAttr("disabled");
+		});
+	}
+});
+-----------------------------------------------------分页
+$("#pageContainer", $mainContainer).nzPager({
+	dataUrl: '^url^func',  //接口URL
+	showData: 20,
+	current: 1,
+	callback: function (api, result) {
+	}
+});
+-----------------------------------------------------get请求
+let url = "_url_func";
+Nzfe.net.ajaxGetJson(url, {}, function (result) {
+	if (result.code > 0) {
+	
+	} else {
+		layer.alert("页面加载错误，请稍后再试");
+	}
+});
+-----------------------------------------------------post请求
+let data = {};
+Nzfe.net.ajaxPostJson(url, JSON.stringify(data), function (result) {
+	console.log(result);
+});
