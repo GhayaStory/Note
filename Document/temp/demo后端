@@ -27,11 +27,11 @@ public ModelAndView index() {
 }
 -----------------------------------------------------UIController
 /**
- * _functext
+ * _fText
  */
-@RequestMapping("/_func")
+@RequestMapping(value = "/_fName", method = RequestMethod.POST)
 @ResponseBody
-public ReturnResult _func(
+public ReturnResult _fName(
 												@RequestBody Map param,
 												@RequestParam("key") String key,
 												@RequestParam("pageNo") String pageNo,
@@ -48,29 +48,28 @@ public ReturnResult _func(
 	param.put("id", param.get("id"));
 
 
-	ReturnResult result = tempService._func(map);
+	ReturnResult result = tempService._fName(param);
 	return result;
 }
 
 -----------------------------------------------------UIIService
 
 /**
- * _functext
+ * _fText
  */
-@RequestMapping("/_func")
+@RequestMapping("/_fName")
 @ResponseBody
-ReturnResult _func(@RequestBody Map<String, Object> map,
-				   @RequestParam("id") String id);
+ReturnResult _fName(@RequestBody Map<String, Object> map);
 -----------------------------------------------------svController
 /**
- * _functext
+ * _fText
  */
-@RequestMapping("/_func")
-ReturnResult _func(@RequestBody Map<String, Object> map) {
+@RequestMapping("/_fName")
+ReturnResult _fName(@RequestBody Map<String, Object> map) {
 	ReturnResult result = new ReturnResult();
 	String strError = "操作失败";
 	try {
-		result = tempService._func(map, "3");
+		result = tempService._fName(map);
 	} catch (Exception e) {
 		e.printStackTrace();
 		result.setCode(-1);
@@ -85,14 +84,14 @@ ReturnResult _func(@RequestBody Map<String, Object> map) {
 
 
 /**
- * _functext
+ * _fText
  *
  * @param map
  * @return
  * @throws Exception
  */
 @Transactional
-public ReturnResult _func(Map<String, Object> map) throws Exception {
+public ReturnResult _fName(Map<String, Object> map) throws Exception {
 	ReturnResult result = new ReturnResult();
 	Integer userId = Integer.parseInt(map.get("userId").toString());
 	String type = map.get("type").toString();

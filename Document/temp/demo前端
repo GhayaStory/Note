@@ -19,21 +19,19 @@ layer.open({
 		//……
 		layer.close(index);
 	}, end: function () {//无论是确认还是取消，只要层被销毁了，end都会执行，不携带任何参数。layer.open关闭事件
-		$('input[name_="member"],select[name_="member"]').each(function (index, cur) {
-			$(cur).removeAttr("disabled");
-		});
+	
 	}
 });
 -----------------------------------------------------分页
 $("#pageContainer", $mainContainer).nzPager({
-	dataUrl: '^url^func',  //接口URL
+	dataUrl: '_url_fName',  //接口URL
 	showData: 20,
 	current: 1,
 	callback: function (api, result) {
 	}
 });
 -----------------------------------------------------get请求
-let url = "_url_func";
+let url = "_url_fName";
 Nzfe.net.ajaxGetJson(url, {}, function (result) {
 	if (result.code > 0) {
 	

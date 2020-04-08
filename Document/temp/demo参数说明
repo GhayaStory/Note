@@ -4,14 +4,14 @@ _btn
 ## 事件
 _event
 ## 请求地址
-_url_func
+_url_fName
 ## 后端-----------------
 ## 注释
-_functext
+_ftext
 ## 后端地址
 _url
 ## 方法名
-_func
+_fName
 
 
 
