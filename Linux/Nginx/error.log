@@ -1,0 +1,32 @@
+2020/04/24 21:43:15 [emerg] 9786#0: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2020/04/24 21:43:15 [emerg] 9786#0: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2020/04/24 21:43:15 [emerg] 9786#0: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2020/04/24 21:43:15 [emerg] 9786#0: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2020/04/24 21:43:15 [emerg] 9786#0: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2020/04/24 21:43:15 [emerg] 9786#0: still could not bind()
+2020/04/24 21:56:56 [error] 9783#0: *1 open() "/opt/nginx/html/favicon.ico" failed (2: No such file or directory), client: 192.168.100.100, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "192.168.100.7", referrer: "http://192.168.100.7/"
+2020/04/25 18:24:50 [notice] 2498#0: signal process started
+2020/04/25 18:24:50 [alert] 2498#0: kill(9782, 1) failed (3: No such process)
+2020/04/25 18:27:35 [error] 2508#0: *2 open() "/opt/nginx/html/favicon.ico" failed (2: No such file or directory), client: 192.168.100.100, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "192.168.100.7", referrer: "http://192.168.100.7/"
+2020/05/03 18:20:34 [error] 1004#0: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.100.100, server: manage.ghaya.com, request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:9001/", host: "192.168.100.7"
+2020/05/03 18:20:34 [error] 1004#0: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.100.100, server: manage.ghaya.com, request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:9001/favicon.ico", host: "192.168.100.7", referrer: "http://192.168.100.7/"
+2020/05/03 18:23:22 [error] 1004#0: *29 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.100.100, server: manage.ghaya.com, request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:9001/", host: "192.168.100.7"
+2020/05/03 18:23:22 [error] 1004#0: *29 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.100.100, server: manage.ghaya.com, request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:9001/favicon.ico", host: "192.168.100.7", referrer: "http://192.168.100.7/"
+2020/05/03 18:23:23 [error] 1004#0: *29 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.100.100, server: manage.ghaya.com, request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:9001/", host: "192.168.100.7"
+2020/05/03 18:23:23 [error] 1004#0: *29 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.100.100, server: manage.ghaya.com, request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:9001/favicon.ico", host: "192.168.100.7", referrer: "http://192.168.100.7/"
+2020/05/03 18:23:23 [error] 1004#0: *29 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.100.100, server: manage.ghaya.com, request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:9001/", host: "192.168.100.7"
+2020/05/03 18:23:23 [error] 1004#0: *29 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.100.100, server: manage.ghaya.com, request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:9001/favicon.ico", host: "192.168.100.7", referrer: "http://192.168.100.7/"
+2020/05/03 18:35:58 [error] 1004#0: *62 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.100.100, server: manage.ghaya.com, request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:9001/", host: "192.168.100.7"
+2020/05/03 18:35:58 [error] 1004#0: *62 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.100.100, server: manage.ghaya.com, request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:9001/favicon.ico", host: "192.168.100.7", referrer: "http://192.168.100.7/"
+2020/05/03 18:40:02 [emerg] 1537#0: unknown directive "//Manage" in /opt/nginx/conf/nginx.conf:37
+2020/05/03 18:42:29 [notice] 1541#0: signal process started
+2020/05/03 20:18:43 [error] 1542#0: *70 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.100.100, server: manage.ghaya.com, request: "GET / HTTP/1.1", upstream: "http://192.168.1.101:9001/", host: "192.168.100.7"
+2020/05/03 20:18:44 [error] 1542#0: *70 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.100.100, server: manage.ghaya.com, request: "GET /favicon.ico HTTP/1.1", upstream: "http://192.168.1.101:9001/favicon.ico", host: "192.168.100.7", referrer: "http://192.168.100.7/"
+2020/05/03 20:24:09 [notice] 1605#0: signal process started
+2020/05/03 20:53:17 [notice] 1685#0: signal process started
+2020/05/03 21:02:59 [notice] 1489#0: signal process started
+2020/05/03 21:07:38 [notice] 1492#0: signal process started
+2020/05/03 21:07:53 [error] 1493#0: *38 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.100.100, server: manage.ghaya.com, request: "GET / HTTP/1.1", upstream: "http://192.168.1.101:9001/", host: "www.ghaya.com"
+2020/05/03 21:07:54 [error] 1493#0: *38 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.100.100, server: manage.ghaya.com, request: "GET /favicon.ico HTTP/1.1", upstream: "http://192.168.1.101:9001/favicon.ico", host: "www.ghaya.com", referrer: "http://www.ghaya.com/"
+2020/05/03 21:07:58 [error] 1493#0: *43 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.100.100, server: manage.ghaya.com, request: "GET / HTTP/1.1", upstream: "http://192.168.1.101:9001/", host: "manage.ghaya.com"
+2020/05/03 21:07:59 [error] 1493#0: *43 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.100.100, server: manage.ghaya.com, request: "GET /favicon.ico HTTP/1.1", upstream: "http://192.168.1.101:9001/favicon.ico", host: "manage.ghaya.com", referrer: "http://manage.ghaya.com/"

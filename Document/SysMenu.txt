@@ -94,6 +94,9 @@ O
 		NVIDIA2（暂不明）
 		Program Files（普通软件）Software（软件，可分解）
 		Program Files (x86)（普通软件）
+		Program Files Tool（工具）
+		Work（工作）
+		
 	F：
 		Program Files (x86)（360zip，可分解）
 		Sys（系统安装相关，镜像等）
@@ -130,7 +133,7 @@ O
 
 
 
-
+ 
 
 
 
