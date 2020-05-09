@@ -13,17 +13,23 @@
  */
 
 
-studentStatusRecord
 
-
-记得修改学年学期（byschool 删掉）
 记得搞模板下载
 导入修改怎么办
+查询调试一些
+复学调试一下
+查找parent表中手机号
+parentInfo
 
-http://192.168.50.249/Tother/M00/00/00/wKgy-V6EBeSALPQDAABUAEnMxA8241.xls
 
-@Value("${fdfs.customeParam.url}")
-    private String fdfsVisitUrl;
+
+Page<Map<String,Object>>
+
+        String classId = map.get("newClassId").toString();
+        String seat = map.get("seat").toString();
+		
+
+
 	
 
 学生信息管理申请流转	type=1 待审核1
@@ -56,19 +62,6 @@ TpersonImg/M00/00/00/wKgy-V5wOQ2AR2FmAADDK_K1IDg930.zip
 
 
 D:\Development\Java\IdeaWorkSpace\nz2.0\smart_campus\xgn_nz_common\src\main\java\com\xgn\nz\common\bean\BasePO.java
-
-
-FileController
-	UploadFile
-		BasePO
-	UploadImage
-	Base64Image
-	UploadImage
-FileService
-ParentController
-
-
-INSERT INTO `sc_common`.`t_attachment` (`id`, `path`, `name`, `creation_time`) VALUES (NULL, NULL, NULL, NULL);
 
 
 smart_campus_ui\src\main\resources\static\js\common\nzfe.form.js ：78

@@ -1,198 +1,21 @@
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//新增
 
-admissionTime: "2020/03/04",
-birthday: "2020/03/11",
-class: "1",
-className: "一班",
-contactAddress: "通信地址",
-contactNumber: "13220031001",
-criminalCheckPerson: "",
-criminalRecord: "否",
-criminalRecordName: "否",
-currentAddress: "现住址",
-email: "648867968@qq.com",
-familyAddress: "家庭地址",
-grade: "1",
-gradeName: "一年级",
-idCard: "350102199304166712",
-interestsThing: "美术、其他:炒股",
-interestsThing1: "其他",
-nation: "1",
-nationName: "汉族",
-nationalStudentNumber: "q200310001",
-nativePlace: "福建",
-oldCriminalRecord: "",
-oldEnrollNum: "",
-otherInterest: "炒股",
-realName: "徐三月十号",
-registrationNumber: "z200310001",
-schoolEnrollNum: "t200310001",
-seat: "3",
-sex: "1",
-sexName: "男",
-studentPosition: "0",
-studentPositionName: "普通学生",
-uid: "",
-youthLeague: "0",
-youthLeagueName: "否",
-member1AccountLocation: "户口所在地1",
-member1CurrentAddress: "现住址1",
-member1Duties: "黑手党",
-member1IdCard: "350102199304168291",
-member1IsGuardian: "1",
-member1IsGuardianName: "是",
-member1Mobilephone: "13220031002",
-member1Nation: "1",
-member1NationName: "汉族",
-member1ParentId: "",
-member1RealName: "徐三月",
-member1Relationship: "1",
-member1RelationshipDesc: "关系说明1",
-member1RelationshipName: "父亲",
-member1WorkUnit: "彭哥列",
-member2AccountLocation: "户口所在地2",
-member2CurrentAddress: "现住址2",
-member2Duties: "挖矿",
-member2IdCard: "350102199304162519",
-member2IsGuardian: "1",
-member2IsGuardianName: "是",
-member2Mobilephone: "13220031003",
-member2Nation: "1",
-member2NationName: "汉族",
-member2ParentId: "",
-member2RealName: "徐二月",
-member2Relationship: "1",
-member2RelationshipDesc: "关系说明2",
-member2RelationshipName: "父亲",
-member2WorkUnit: "矿产",
 
-	
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//修改
 
-admissionDate: "2020-03-04",
-admissionDateStr: null
-admissionTime: "2020/03/04",
-birthday: "2020/03/11",
-class: "1",
-classId: "1",
-className: "一班",
-contactAddress: "通信地址",
-contactNumber: "13260087208",
-creationTime: "2020-03-06T11:57:25",
-creationTimeStr: "2020-03-06 11:57:25",
-creator: "608",
-criminalCheckPerson: "",
-criminalRecord: "0",
-criminalRecordFlag: "0",
-criminalRecordName: "否",
-currentAddress: "现住址",
-email: "15060087208@163.com",
-familyAddress: "家庭地址",
-gender: "1",
-genderName: "男",
-grade: "1",
-gradeId: "1",
-gradeName: "一年级",
-hobbies: "美术、书法、其他:滑稽",
-id: "1",
-idCard: "350102199304161911",
-initials: "xxw",
-interestsThing: "美术、书法、其他:滑稽",
-interestsThing1: "其他",
-modifier: null
-modifyTime: null
-modifyTimeStr: null
-name: "徐小碗",
-nation: "1",
-nationName: "汉族",
-nationalStudentNumber: "111111",
-nativePlace: "福建",
-oldCriminalRecord: "",
-oldEnrollNum: "t200303001",
-otherInterest: "滑稽",
-photoAttachmentId: null
-pinyin: "xuxiaowan",
-positionId: "1",
-positionName: null
-realName: "徐小碗",
-registrationNumber: "1",
-schoolEnrollNum: "t200303001",
-schoolId: "1",
-seat: "1",
-sex: "1",
-sexName: "男",
-status: "0",
-statusName: "在籍",
-studentId: "1",
-studentNumber: "t200303001",
-studentPosition: "0",
-studentPositionName: "普通学生",
-telephone: "13260087208",
-uid: "",
-youthLeague: "",
-youthLeagueFlag: "1",
-youthLeagueName: "请选择",
-member1AccountLocation: "他爸的户口所在地",
-member1CreationTime: [2020, 3, 6, 11, 57, 25]
-member1CreationTimeStr: "2020-03-06 11:57:25",
-member1Creator: 608
-member1CurrentAddress: "他爸的现住址",
-member1DomicilePlace: "他爸的户口所在地",
-member1Duties: "他爸的职务",
-member1Email: null
-member1Id: 1
-member1IdCard: "350102199304161911",
-member1Initials: "xdt",
-member1IsGuardian: "1",
-member1IsGuardianName: "是",
-member1Mobilephone: "13260087208",
-member1Modifier: null
-member1ModifyTime: null
-member1ModifyTimeStr: null
-member1Name: "徐大桶",
-member1Nation: "1",
-member1NationName: "汉族",
-member1ParentId: "1",
-member1Pinyin: "xudatong",
-member1RealName: "徐大桶",
-member1Relationship: "1",
-member1RelationshipDesc: "关系说明1",
-member1RelationshipName: "父亲",
-member1RelationshipRemark: "关系说明1",
-member1SchoolId: 1
-member1WorkPlace: "他爸的工作单位",
-member1WorkUnit: "他爸的工作单位",
-member2AccountLocation: "他妈的户口所在地",
-member2CreationTime: [2020, 3, 6, 11, 57, 25]
-member2CreationTimeStr: "2020-03-06 11:57:25",
-member2Creator: 608
-member2CurrentAddress: "他妈的现住址",
-member2DomicilePlace: "他妈的户口所在地",
-member2Duties: "他妈的职务",
-member2Email: null
-member2Id: 2
-member2IdCard: "350102199304161911",
-member2Initials: "xet",
-member2IsGuardian: "1",
-member2IsGuardianName: "是",
-member2Mobilephone: "13260087209",
-member2Modifier: null
-member2ModifyTime: null
-member2ModifyTimeStr: null
-member2Name: "徐二桶",
-member2Nation: "2",
-member2NationName: "蒙古族",
-member2ParentId: "2",
-member2Pinyin: "xuertong",
-member2RealName: "徐二桶",
-member2Relationship: "2",
-member2RelationshipDesc: "关系说2",
-member2RelationshipName: "母亲",
-member2RelationshipRemark: "关系说2",
-member2SchoolId: 1
-member2WorkPlace: "他妈的工作单位",
-member2WorkUnit: "他妈的工作单位",
+
+
+
+classBonusPoint: 1
+content: "1"
+creationTime: (6) [2020, 4, 29, 13, 47, 22]
+creator: 1
+id: 1
+modifier: 0
+modifyTime: (6) [2020, 4, 29, 13, 47, 25]
+name: "1"
+personBonusPoint: 1
+schoolId: 65
+stateType: 1
+stateTypeName: "小学"
+termId: 86

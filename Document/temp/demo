@@ -1,49 +1,49 @@
 
 -----------------------------------------------------UIController
 /**
- * _fText
+ * 删除指标
  */
-@RequestMapping(value = "/_fName", method = RequestMethod.POST)
+@RequestMapping(value = "/delQuota", method = RequestMethod.POST)
 @ResponseBody
-public ReturnResult _fName(
+public ReturnResult delQuota(
 												@RequestBody Map param,
 												@RequestParam("key") String key,
 												@RequestParam("pageNo") String pageNo,
 												@RequestParam("pageSize") String pageSize,
 												@RequestAttribute AuthUser authUser) {
-	HashMap<String, Object> map = new HashMap<>();
+	HashMap<String, Object> param = new HashMap<>();
 	param.put("schoolId", authUser.getSchoolId());
-	param.put("curYearId", authUser.getCurrentYearId());
 	param.put("curTermId", authUser.getCurrentTermId());
 	param.put("userId", authUser.getId());
-	param.put("userName", authUser.getUsername());
+	param.put("userName", authUser.getRealName());
 	param.put("pageNo", pageNo);
 	param.put("pageSize", pageSize);
-	param.put("id", param.get("id"));
+	param.put("key", key);
 
 
-	ReturnResult result = tempService._fName(param);
+	ReturnResult result = tempService.delQuota(param);
 	return result;
 }
 
 -----------------------------------------------------UIIService
 
 /**
- * _fText
+ * 删除指标
  */
-@RequestMapping("/_fName")
+@RequestMapping("/delQuota")
 @ResponseBody
-ReturnResult _fName(@RequestBody Map<String, Object> map);
+ReturnResult delQuota(@RequestBody Map<String, Object> map);
 -----------------------------------------------------svController
+
 /**
- * _fText
+ * 删除指标
  */
-@RequestMapping("/_fName")
-ReturnResult _fName(@RequestBody Map<String, Object> map) {
+@RequestMapping("/delQuota")
+ReturnResult delQuota(@RequestBody Map<String, Object> map) {
 	ReturnResult result = new ReturnResult();
 	String strError = "操作失败";
 	try {
-		result = tempService._fName(map);
+		result = tempService.delQuota(map);
 	} catch (Exception e) {
 		e.printStackTrace();
 		result.setCode(-1);
@@ -51,5 +51,63 @@ ReturnResult _fName(@RequestBody Map<String, Object> map) {
 		logger.error(e.getMessage());
 	}
 	result.setNote((result.getNote() == null || "".equals(result.getNote())) ? strError : result.getNote());
+	return result;
+}
+
+-----------------------------------------------------svService
+
+
+/**
+ * 删除指标
+ *
+ * @param map
+ * @return
+ * @throws Exception
+ */
+@Transactional
+public ReturnResult delQuota(Map<String, Object> map) throws Exception {
+	ReturnResult result = new ReturnResult();
+	Integer schoolId = Integer.parseInt(map.get("schoolId").toString());
+	Integer curTermId = Integer.parseInt(map.get("curTermId").toString());
+	Integer userId = Integer.parseInt(map.get("userId").toString());
+	String userName = map.get("userName").toString();
+	Integer pageNo = Integer.parseInt(map.get("pageNo").toString());
+	Integer pageSize = Integer.parseInt(map.get("pageSize").toString());
+	String key = map.get("key") == null ? "" : map.get("key").toString();
+
+
+
+	//保存修改
+	boolean save_parent1 = iParentService.save(parent1);
+	if (!save_parent1) {
+		TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();//触发回滚
+		result.setCode(-1);
+		result.setNote("家长1新增失败");
+		return result;
+	}
+	
+	
+	//分页
+	
+	PageBean pageBean = new PageBean();
+	pageBean.setPageNo(pageNo);
+	pageBean.setPageSize(pageSize);
+
+	Page<StudentTransferClass> page = new Page<>(pageNo, pageSize);
+	QueryWrapper<StudentTransferClass> wrap = new QueryWrapper<>();
+	wrap.eq("type", 1)//班主任调班,非管理员
+			.eq("term_id", curTermId)
+			.in(selectClassStr, classIdSet);
+	if (StringUtils.isNotBlank(key)) {
+		wrap.and(i -> i.like("student_name", key)
+				.or().like("student_number", key)
+				.or().like("id_card", key));
+	}
+	Page<StudentTransferClass> parentInfoPage = iStudentTransferClassService.page(page, wrap);
+	result.setDataList(parentInfoPage.getRecords());
+	result.setPageBean(pageBean);
+
+	result.setNote("操作成功");
+	result.setCode(1);
 	return result;
 }

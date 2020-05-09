@@ -1,5 +1,10 @@
 
 -----------------------------------------------------后端常用参数
+
+//取配置值
+@Value("${fdfs.customeParam.url}")
+private String fdfsVisitUrl;
+
 @RestController
 @RequestMapping("_url")
 public class _clNameCon {}
@@ -25,6 +30,7 @@ UseService useService;
 public ModelAndView index() {
 	return new ModelAndView("school/studentStatusRecord");
 }
+
 -----------------------------------------------------UIController
 /**
  * _fText
@@ -37,15 +43,14 @@ public ReturnResult _fName(
 												@RequestParam("pageNo") String pageNo,
 												@RequestParam("pageSize") String pageSize,
 												@RequestAttribute AuthUser authUser) {
-	HashMap<String, Object> map = new HashMap<>();
+	HashMap<String, Object> param = new HashMap<>();
 	param.put("schoolId", authUser.getSchoolId());
-	param.put("curYearId", authUser.getCurrentYearId());
 	param.put("curTermId", authUser.getCurrentTermId());
 	param.put("userId", authUser.getId());
-	param.put("userName", authUser.getUsername());
+	param.put("userName", authUser.getRealName());
 	param.put("pageNo", pageNo);
 	param.put("pageSize", pageSize);
-	param.put("id", param.get("id"));
+	param.put("key", key);
 
 
 	ReturnResult result = tempService._fName(param);
@@ -93,17 +98,45 @@ ReturnResult _fName(@RequestBody Map<String, Object> map) {
 @Transactional
 public ReturnResult _fName(Map<String, Object> map) throws Exception {
 	ReturnResult result = new ReturnResult();
+	Integer schoolId = Integer.parseInt(map.get("schoolId").toString());
+	Integer curTermId = Integer.parseInt(map.get("curTermId").toString());
 	Integer userId = Integer.parseInt(map.get("userId").toString());
-	String type = map.get("type").toString();
+	String userName = map.get("userName").toString();
+	Integer pageNo = Integer.parseInt(map.get("pageNo").toString());
+	Integer pageSize = Integer.parseInt(map.get("pageSize").toString());
+	String key = map.get("key") == null ? "" : map.get("key").toString();
 
-	logger.info("debug");
-	boolean save_StudentTransferClass = iStudentTransferClassService.save(studentTransferClass);
-	if (!save_StudentTransferClass) {
+
+
+	//保存修改
+	boolean save_parent1 = iParentService.save(parent1);
+	if (!save_parent1) {
 		TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();//触发回滚
 		result.setCode(-1);
-		result.setNote("操作失败");
+		result.setNote("家长1新增失败");
 		return result;
 	}
+	
+	
+	//分页
+	
+	PageBean pageBean = new PageBean();
+	pageBean.setPageNo(pageNo);
+	pageBean.setPageSize(pageSize);
+
+	Page<StudentTransferClass> page = new Page<>(pageNo, pageSize);
+	QueryWrapper<StudentTransferClass> wrap = new QueryWrapper<>();
+	wrap.eq("type", 1)//班主任调班,非管理员
+			.eq("term_id", curTermId)
+			.in(selectClassStr, classIdSet);
+	if (StringUtils.isNotBlank(key)) {
+		wrap.and(i -> i.like("student_name", key)
+				.or().like("student_number", key)
+				.or().like("id_card", key));
+	}
+	Page<StudentTransferClass> parentInfoPage = iStudentTransferClassService.page(page, wrap);
+	result.setDataList(parentInfoPage.getRecords());
+	result.setPageBean(pageBean);
 
 	result.setNote("操作成功");
 	result.setCode(1);

@@ -1,23 +1,31 @@
 
 前端
+
+-----------------------------------------------------测试
+<a id="btnTest" type="button" href="javascript:;">test</a>
+
+$("#btnTest").bind("click", function () {
+	console.log(pageExaminationStateArr);
+	console.log(examinationState1);
+});
+
 -----------------------------------------------------按钮绑定
-$("#btn", $mainContainer).unbind().bind("click", function () {
+$("#btn", $mainContainer).unbind("click").bind("click", function () {
 	
 });
 -----------------------------------------------------弹窗
 layer.open({
 	type: 1,
 	title: '_Title',
-	area: ['60%', '80%'],//宽，高
+	area: ['60%', '450px'],//宽，高
 	shadeClose: false, //点击遮罩关闭
 	//closeBtn: 0, //不显示关闭按钮
 	fix: false,
 	scrollbar: false,
 	content: $("#winSingleStudentChangeClass", $mainContainer),
 	zIndex: 10,
-	success: function (layero, index) {
-		//……
-		layer.close(index);
+	success: function (layero, winIndex) {
+	
 	}, end: function () {//无论是确认还是取消，只要层被销毁了，end都会执行，不携带任何参数。layer.open关闭事件
 	
 	}
@@ -40,7 +48,12 @@ Nzfe.net.ajaxGetJson(url, {}, function (result) {
 	}
 });
 -----------------------------------------------------post请求
-let data = {};
+let tabInitLoad = layer.load(1);
+let data = {
+
+};
+let url = '/teacher/fiveEvaluation/additionalQuotaSettings/saveQuotaTypeList';
 Nzfe.net.ajaxPostJson(url, JSON.stringify(data), function (result) {
+	layer.close(tabInitLoad);
 	console.log(result);
 });
