@@ -1,113 +1,316 @@
 
------------------------------------------------------UIController
-/**
- * 删除指标
- */
-@RequestMapping(value = "/delQuota", method = RequestMethod.POST)
-@ResponseBody
-public ReturnResult delQuota(
-												@RequestBody Map param,
-												@RequestParam("key") String key,
-												@RequestParam("pageNo") String pageNo,
-												@RequestParam("pageSize") String pageSize,
-												@RequestAttribute AuthUser authUser) {
-	HashMap<String, Object> param = new HashMap<>();
-	param.put("schoolId", authUser.getSchoolId());
-	param.put("curTermId", authUser.getCurrentTermId());
-	param.put("userId", authUser.getId());
-	param.put("userName", authUser.getRealName());
-	param.put("pageNo", pageNo);
-	param.put("pageSize", pageSize);
-	param.put("key", key);
+    /**
+     * 查询抽查队以及成员
+     *
+     * @param map
+     * @return
+     * @throws Exception
+     */
+    public List<SteeringTeam> queryCheckTeamAndMember(Map<String, Object> map) throws Exception {
+        ReturnResult result = new ReturnResult();
+        Integer schoolId = Integer.parseInt(map.get("schoolId").toString());
+        //查抽查队
+        List<SteeringTeam> steeringTeamList = iSpotCheckTeamService.list(new QueryWrapper<SteeringTeam>().eq("school_id", schoolId).orderByDesc("id"));
+        if (steeringTeamList.size() < 1) {
+            return steeringTeamList;
+        }
+        //查成员
+        List<Integer> teanIdList = steeringTeamList.stream().map(SteeringTeam::getId).collect(Collectors.toList());
+        List<SteeringTeamMember> steeringTeamMemberList = iSpotCheckTeamMemberService.list(new QueryWrapper<SteeringTeamMember>().in("steering_team_id", teanIdList));
+        if (steeringTeamMemberList.size() < 1) {
+            return steeringTeamList;
+        }
+        //注入成员
+        List<SteeringTeam> steeringTeamListEnd = steeringTeamList.stream().peek(x -> {
+            List<SteeringTeamMember> collect = steeringTeamMemberList.stream().filter(c -> c.getSteeringTeamId() == x.getId()).collect(Collectors.toList());
+            x.setSteeringTeamMemberList(collect);
+        }).collect(Collectors.toList());
+
+        return steeringTeamListEnd;
+    }
+
+    /**
+     * 添加抽查队成员
+     *
+     * @param map
+     * @return
+     * @throws Exception
+     */
+    @Transactional
+    public ReturnResult insertCheckTeamMember(Map<String, Object> map) throws Exception {
+        ReturnResult result = new ReturnResult();
+        Integer teamId = Integer.parseInt(map.get("teamId").toString());
+        Integer studentId = Integer.parseInt(map.get("studentId").toString());
+        String studentName = map.get("studentName").toString();
+        String studentNumber = map.get("studentNumber").toString();
+
+        SteeringTeamMember steeringTeamMember = new SteeringTeamMember();
+        steeringTeamMember.setSteeringTeamId(teamId);
+        steeringTeamMember.setStudentId(studentId);
+        steeringTeamMember.setStudentName(studentName);
+        steeringTeamMember.setStudentNumber(studentNumber);
+        List<SteeringTeamMember> student_id = iSpotCheckTeamMemberService.list(new QueryWrapper<SteeringTeamMember>().eq("student_id", studentId));
+
+        if(student_id.size()>0){
+            result.setNote("该学生已在该分组");
+            result.setCode(-1);
+            return result;
+        }
+
+        boolean save = iSpotCheckTeamMemberService.save(steeringTeamMember);
+        if (!save) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();//触发回滚
+            result.setCode(-1);
+            result.setNote("保存失败");
+            return result;
+        }
+        result.setNote("保存成功");
+        result.setCode(1);
+        return result;
+    }
+
+    /**
+     * 删除抽查队成员
+     *
+     * @param map
+     * @return
+     * @throws Exception
+     */
+    @Transactional
+    public ReturnResult deleteCheckTeamMember(Map<String, Object> map) throws Exception {
+        ReturnResult result = new ReturnResult();
+        Integer id = Integer.parseInt(map.get("id").toString());
+
+        //删成员
+        boolean delete = iSpotCheckTeamMemberService.removeById(id);
+        if (!delete) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();//触发回滚
+            result.setCode(-1);
+            result.setNote("删除失败");
+            return result;
+        }
+//
+//        boolean delete2 = iSpotCheckTeamMemberService.remove(new QueryWrapper<SteeringTeamMember>().eq("steering_team_id",id));
+//        if (!delete) {
+//            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();//触发回滚
+//            result.setCode(-1);
+//            result.setNote("删除失败");
+//            return result;
+//        }
 
 
-	ReturnResult result = tempService.delQuota(param);
-	return result;
-}
-
------------------------------------------------------UIIService
-
-/**
- * 删除指标
- */
-@RequestMapping("/delQuota")
-@ResponseBody
-ReturnResult delQuota(@RequestBody Map<String, Object> map);
------------------------------------------------------svController
-
-/**
- * 删除指标
- */
-@RequestMapping("/delQuota")
-ReturnResult delQuota(@RequestBody Map<String, Object> map) {
-	ReturnResult result = new ReturnResult();
-	String strError = "操作失败";
-	try {
-		result = tempService.delQuota(map);
-	} catch (Exception e) {
-		e.printStackTrace();
-		result.setCode(-1);
-		result.setMsg(e.getMessage());
-		logger.error(e.getMessage());
-	}
-	result.setNote((result.getNote() == null || "".equals(result.getNote())) ? strError : result.getNote());
-	return result;
-}
-
------------------------------------------------------svService
+        result.setNote("删除成功");
+        result.setCode(1);
+        return result;
+    }
 
 
-/**
- * 删除指标
- *
- * @param map
- * @return
- * @throws Exception
- */
-@Transactional
-public ReturnResult delQuota(Map<String, Object> map) throws Exception {
-	ReturnResult result = new ReturnResult();
-	Integer schoolId = Integer.parseInt(map.get("schoolId").toString());
-	Integer curTermId = Integer.parseInt(map.get("curTermId").toString());
-	Integer userId = Integer.parseInt(map.get("userId").toString());
-	String userName = map.get("userName").toString();
-	Integer pageNo = Integer.parseInt(map.get("pageNo").toString());
-	Integer pageSize = Integer.parseInt(map.get("pageSize").toString());
-	String key = map.get("key") == null ? "" : map.get("key").toString();
+    /**
+     * 新增抽查队
+     *
+     * @param map
+     * @return
+     * @throws Exception
+     */
+    @Transactional
+    public ReturnResult insertCheckTeam(Map<String, Object> map) throws Exception {
+        ReturnResult result = new ReturnResult();
+        Integer schoolId = Integer.parseInt(map.get("schoolId").toString());
+        Integer userId = Integer.parseInt(map.get("userId").toString());
+//        String userName = map.get("userName").toString();
+
+        String teamName = map.get("teamName").toString();//队名
+        Integer checkRange = Integer.parseInt(map.get("checkRange").toString());//检查范围
+        Integer checkRangeType = Integer.parseInt(map.get("checkRangeType").toString());//检查范围类型
+        Integer checkType = Integer.parseInt(map.get("checkType").toString());//检查类型
+        List<Map<String, Object>> selectedPersonList = (List<Map<String,Object>>)map.get("personList");//成员
+
+
+        SteeringTeam steeringTeam = new SteeringTeam();
+        steeringTeam.setSchoolId(schoolId);
+        steeringTeam.setName(teamName);
+        steeringTeam.setCheckRange(checkRange);
+        steeringTeam.setCheckRangeType(checkRangeType);
+        steeringTeam.setCheckType(checkType);
+        steeringTeam.setCreator(userId);
+        boolean save = iSpotCheckTeamService.save(steeringTeam);
+        if (!save) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();//触发回滚
+            result.setCode(-1);
+            result.setNote("保存失败");
+            return result;
+        }
+        ArrayList<SteeringTeamMember> steeringTeamMembers = new ArrayList<>();
+        for (int i = 0; i < selectedPersonList.size(); i++) {
+            Map<String, Object> curData = selectedPersonList.get(i);
+            SteeringTeamMember steeringTeamMember = new SteeringTeamMember();
+            steeringTeamMember.setSteeringTeamId(steeringTeam.getId());
+            steeringTeamMember.setStudentId(Integer.parseInt(curData.get("studentId").toString()));
+            steeringTeamMember.setStudentName(curData.get("studentName").toString());
+            steeringTeamMember.setStudentNumber(curData.get("studentNumber").toString());
+            steeringTeamMembers.add(steeringTeamMember);
+        };
+        boolean save_batch = iSpotCheckTeamMemberService.saveBatch(steeringTeamMembers);
+        if (!save_batch) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();//触发回滚
+            result.setCode(-1);
+            result.setNote("成员保存失败");
+            return result;
+        }
+
+        result.setNote("操作成功");
+        result.setCode(1);
+        return result;
+    }
+
+
+    /**
+     * 查询抽查队排班数据
+     *
+     * @param map
+     * @return
+     * @throws Exception
+     */
+    public List<SteeringDutyRoster> queryCheckDutyRoster(Map<String, Object> map) throws Exception {
+        List<SteeringDutyRoster> steeringDutyRosterList = new ArrayList<>();
+        Integer schoolId = Integer.parseInt(map.get("schoolId").toString());
+
+        List<SteeringTeam> steeringTeamLis = iSpotCheckTeamService.list(new QueryWrapper<SteeringTeam>().eq("school_id", schoolId));
+        if(steeringTeamLis.size()<1){
+            return steeringDutyRosterList;
+        }
+        List<Integer> integerList = steeringTeamLis.stream().map(x -> x.getId()).collect(Collectors.toList());
+        steeringDutyRosterList = iSpotCheckDutyRosterService.list(new QueryWrapper<SteeringDutyRoster>().in("steering_team_id", integerList));
+        try{
+            steeringDutyRosterList = steeringDutyRosterList.stream().peek(x -> {
+                List<SteeringTeam> collect = steeringTeamLis.stream().filter(c -> c.getId() == x.getSteeringTeamId()).collect(Collectors.toList());
+                System.out.println(collect);
+                x.setSteeringTeamName(collect.get(0).getName());
+            }).collect(Collectors.toList());
+        }catch (Exception e){
+            e.printStackTrace();
+            logger.error("队伍和安排数据不匹配");
+        }
+
+        return steeringDutyRosterList;
+    }
+
+
+    /**
+     * 保存抽查队排班数据
+     *
+     * @param map
+     * @return
+     * @throws Exception
+     */
+    @Transactional
+    public ReturnResult saveCheckDutyRoster(Map<String, Object> map) throws Exception {
+        ReturnResult result = new ReturnResult();
+        Integer schoolId = Integer.parseInt(map.get("schoolId").toString());
+        Integer userId = Integer.parseInt(map.get("userId").toString());
+        List<Map<String, Object>> dutyList = (List<Map<String,Object>>)map.get("dutyList");//成员
+        List<SteeringTeam> steeringTeamLis = iSpotCheckTeamService.list(new QueryWrapper<SteeringTeam>().eq("school_id", schoolId));
+        List<Integer> integerList = steeringTeamLis.stream().map(x -> x.getId()).collect(Collectors.toList());
+        boolean del = iSpotCheckDutyRosterService.remove(new QueryWrapper<SteeringDutyRoster>().in("steering_team_id", integerList));
+        if (!del) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();//触发回滚
+            result.setCode(-1);
+            result.setNote("保存失败1");
+            return result;
+        }
+
+        List<SteeringDutyRoster> steeringDutyRosters = new ArrayList<>();
+        for (int i = 0; i < dutyList.size(); i++) {
+            Map<String, Object> cutData = dutyList.get(i);
+            SteeringDutyRoster steeringDutyRoster = new SteeringDutyRoster();
+            steeringDutyRoster.setSteeringTeamId(Integer.parseInt(cutData.get("teamId").toString()));
+            steeringDutyRoster.setWeek(Integer.parseInt(cutData.get("week").toString()));
+            steeringDutyRoster.setCreator(userId);
+            steeringDutyRosters.add(steeringDutyRoster);
+        }
+
+        boolean batch_save = iSpotCheckDutyRosterService.saveBatch(steeringDutyRosters);
+        if (!batch_save) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();//触发回滚
+            result.setCode(-1);
+            result.setNote("保存失败2");
+            return result;
+        }
+
+        result.setNote("保存成功");
+        result.setCode(1);
+        return result;
+    }
 
 
 
-	//保存修改
-	boolean save_parent1 = iParentService.save(parent1);
-	if (!save_parent1) {
-		TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();//触发回滚
-		result.setCode(-1);
-		result.setNote("家长1新增失败");
-		return result;
-	}
-	
-	
-	//分页
-	
-	PageBean pageBean = new PageBean();
-	pageBean.setPageNo(pageNo);
-	pageBean.setPageSize(pageSize);
 
-	Page<StudentTransferClass> page = new Page<>(pageNo, pageSize);
-	QueryWrapper<StudentTransferClass> wrap = new QueryWrapper<>();
-	wrap.eq("type", 1)//班主任调班,非管理员
-			.eq("term_id", curTermId)
-			.in(selectClassStr, classIdSet);
-	if (StringUtils.isNotBlank(key)) {
-		wrap.and(i -> i.like("student_name", key)
-				.or().like("student_number", key)
-				.or().like("id_card", key));
-	}
-	Page<StudentTransferClass> parentInfoPage = iStudentTransferClassService.page(page, wrap);
-	result.setDataList(parentInfoPage.getRecords());
-	result.setPageBean(pageBean);
+    /**
+     * 修改抽查队
+     *
+     * @param map
+     * @return
+     * @throws Exception
+     */
+    @Transactional
+    public ReturnResult updateCheckTeam(Map<String, Object> map) throws Exception {
+        ReturnResult result = new ReturnResult();
+        Integer schoolId = Integer.parseInt(map.get("schoolId").toString());
+        Integer userId = Integer.parseInt(map.get("userId").toString());
+//        String userName = map.get("userName").toString();
 
-	result.setNote("操作成功");
-	result.setCode(1);
-	return result;
-}
+        String id = map.get("id").toString();//队名
+        String teamName = map.get("teamName").toString();//队名
+        Integer checkRange = Integer.parseInt(map.get("checkRange").toString());//检查范围
+        Integer checkRangeType = Integer.parseInt(map.get("checkRangeType").toString());//检查范围类型
+        Integer checkType = Integer.parseInt(map.get("checkType").toString());//检查类型
+        List<Map<String, Object>> selectedPersonList = (List<Map<String,Object>>)map.get("personList");//成员
+
+
+        SteeringTeam steeringTeam = iSpotCheckTeamService.getById(id);
+        steeringTeam.setSchoolId(schoolId);
+        steeringTeam.setName(teamName);
+        steeringTeam.setCheckRange(checkRange);
+        steeringTeam.setCheckRangeType(checkRangeType);
+        steeringTeam.setCheckType(checkType);
+        steeringTeam.setCreator(userId);
+        boolean save = iSpotCheckTeamService.updateById(steeringTeam);
+        if (!save) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();//触发回滚
+            result.setCode(-1);
+            result.setNote("保存失败");
+            return result;
+        }
+
+        boolean steering_team_id = iSpotCheckTeamMemberService.remove(new QueryWrapper<SteeringTeamMember>().eq("steering_team_id", id));
+        if (!steering_team_id) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();//触发回滚
+            result.setCode(-1);
+            result.setNote("保存失败");
+            return result;
+        }
+
+        ArrayList<SteeringTeamMember> steeringTeamMembers = new ArrayList<>();
+        for (int i = 0; i < selectedPersonList.size(); i++) {
+            Map<String, Object> curData = selectedPersonList.get(i);
+            SteeringTeamMember steeringTeamMember = new SteeringTeamMember();
+            steeringTeamMember.setSteeringTeamId(steeringTeam.getId());
+            steeringTeamMember.setStudentId(Integer.parseInt(curData.get("studentId").toString()));
+            steeringTeamMember.setStudentName(curData.get("studentName").toString());
+            steeringTeamMember.setStudentNumber(curData.get("studentNumber").toString());
+            steeringTeamMembers.add(steeringTeamMember);
+        };
+        boolean save_batch = iSpotCheckTeamMemberService.saveBatch(steeringTeamMembers);
+        if (!save_batch) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();//触发回滚
+            result.setCode(-1);
+            result.setNote("成员保存失败");
+            return result;
+        }
+
+
+
+        result.setNote("操作成功");
+        result.setCode(1);
+        return result;
+    }

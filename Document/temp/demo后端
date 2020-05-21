@@ -32,6 +32,7 @@ public ModelAndView index() {
 }
 
 -----------------------------------------------------UIController
+
 /**
  * _fText
  */
@@ -65,7 +66,9 @@ public ReturnResult _fName(
 @RequestMapping("/_fName")
 @ResponseBody
 ReturnResult _fName(@RequestBody Map<String, Object> map);
+
 -----------------------------------------------------svController
+
 /**
  * _fText
  */
@@ -108,7 +111,18 @@ public ReturnResult _fName(Map<String, Object> map) throws Exception {
 
 
 
-	//保存修改
+	
+
+	result.setNote("操作成功");
+	result.setCode(1);
+	return result;
+}
+
+
+
+
+
+//保存修改
 	boolean save_parent1 = iParentService.save(parent1);
 	if (!save_parent1) {
 		TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();//触发回滚
@@ -137,11 +151,6 @@ public ReturnResult _fName(Map<String, Object> map) throws Exception {
 	Page<StudentTransferClass> parentInfoPage = iStudentTransferClassService.page(page, wrap);
 	result.setDataList(parentInfoPage.getRecords());
 	result.setPageBean(pageBean);
-
-	result.setNote("操作成功");
-	result.setCode(1);
-	return result;
-}
 
 
 
