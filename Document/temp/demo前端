@@ -48,11 +48,12 @@ Nzfe.net.ajaxGetJson(url, {}, function (result) {
 	}
 });
 -----------------------------------------------------post请求
-let tabInitLoad = layer.load(1);
+
 let data = {
 
 };
-let url = '/teacher/fiveEvaluation/additionalQuotaSettings/saveQuotaTypeList';
+let url = '/teacher/fiveEvaluation/activityAnalysis/_fName';
+let tabInitLoad = layer.load(1);
 Nzfe.net.ajaxPostJson(url, JSON.stringify(data), function (result) {
 	layer.close(tabInitLoad);
 	console.log(result);

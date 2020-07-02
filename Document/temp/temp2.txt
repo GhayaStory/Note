@@ -1,21 +1,29 @@
 
 
+		{
+			"path": "pages/teacherAttendance/Sign/Sign",
+			"style": {
+				"navigationBarTitleText": "考勤签到"
+			}
+		},
 
+		{
+			"path": "pages/teacherAttendance/Signjilu/Signjilu",
+			"style": {
+				"navigationBarTitleText": "考勤签到"
+			}
+		},
 
+		{
+			"path": "pages/teacherAttendance/Apply/Apply",
+			"style": {
+				"navigationBarTitleText": "请假申请"
+			}
+		},
 
-
-
-
-classBonusPoint: 1
-content: "1"
-creationTime: (6) [2020, 4, 29, 13, 47, 22]
-creator: 1
-id: 1
-modifier: 0
-modifyTime: (6) [2020, 4, 29, 13, 47, 25]
-name: "1"
-personBonusPoint: 1
-schoolId: 65
-stateType: 1
-stateTypeName: "Сѧ"
-termId: 86
+		{
+			"path": "pages/teacherAttendance/Applyjilu/Applyjilu",
+			"style": {
+				"navigationBarTitleText": "请假记录"
+			}
+		}

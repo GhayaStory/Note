@@ -2,11 +2,11 @@
 -----------------------------------------------------UIController
 
 /**
- * 查询班级五项评比记录
+ * 上下班打卡保存数据
  */
-@RequestMapping(value = "/_fName", method = RequestMethod.POST)
+@RequestMapping(value = "/insertARecord", method = RequestMethod.POST)
 @ResponseBody
-public ReturnResult _fName(
+public ReturnResult insertARecord(
 												@RequestBody Map param,
 												@RequestParam("key") String key,
 												@RequestParam("pageNo") String pageNo,
@@ -22,30 +22,30 @@ public ReturnResult _fName(
 	param.put("key", key);
 
 
-	ReturnResult result = tempService._fName(param);
+	ReturnResult result = tempService.insertARecord(param);
 	return result;
 }
 
 -----------------------------------------------------UIIService
 
 /**
- * 查询班级五项评比记录
+ * 上下班打卡保存数据
  */
-@RequestMapping("/_fName")
+@RequestMapping("/insertARecord")
 @ResponseBody
-ReturnResult _fName(@RequestBody Map<String, Object> map);
+ReturnResult insertARecord(@RequestBody Map<String, Object> map);
 
 -----------------------------------------------------svController
 
 /**
- * 查询班级五项评比记录
+ * 上下班打卡保存数据
  */
-@RequestMapping("/_fName")
-ReturnResult _fName(@RequestBody Map<String, Object> map) {
+@RequestMapping("/insertARecord")
+ReturnResult insertARecord(@RequestBody Map<String, Object> map) {
 	ReturnResult result = new ReturnResult();
 	String strError = "操作失败";
 	try {
-		result = tempService._fName(map);
+		result = tempService.insertARecord(map);
 	} catch (Exception e) {
 		e.printStackTrace();
 		result.setCode(-1);
@@ -60,14 +60,14 @@ ReturnResult _fName(@RequestBody Map<String, Object> map) {
 
 
 /**
- * 查询班级五项评比记录
+ * 上下班打卡保存数据
  *
  * @param map
  * @return
  * @throws Exception
  */
 @Transactional
-public ReturnResult _fName(Map<String, Object> map) throws Exception {
+public ReturnResult insertARecord(Map<String, Object> map) throws Exception {
 	ReturnResult result = new ReturnResult();
 	Integer schoolId = Integer.parseInt(map.get("schoolId").toString());
 	Integer curTermId = Integer.parseInt(map.get("curTermId").toString());
@@ -85,4 +85,3 @@ public ReturnResult _fName(Map<String, Object> map) throws Exception {
 	result.setCode(1);
 	return result;
 }
-
