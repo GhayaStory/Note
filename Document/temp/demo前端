@@ -30,6 +30,20 @@ layer.open({
 	
 	}
 });
+-----------------------------------------------------弹窗(输入框)
+layer.prompt({
+	value: '',
+	title: '请输入组名',
+	yes: function (index, layero) {
+		// 获取文本框输入的值
+		var value = layero.find(".layui-layer-input").val();
+		if (value) {
+
+		} else {
+			layer.msg("请输入组名");
+		}
+	}
+});
 -----------------------------------------------------分页
 $("#pageContainer", $mainContainer).nzPager({
 	dataUrl: '_url_fName',  //接口URL

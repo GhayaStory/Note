@@ -1,13 +1,52 @@
-考勤签到
-考勤记录
-请假申请
-请假记录
+教室荣誉
+http://www.nazhisoft.com/uiTeacherEvaluate/getTeacherHonorData?key1=&key2=&pageNo=1&pageSize=20
+教室技能大赛
+http://www.nazhisoft.com/uiTeacherEvaluate/getTeacherSkillsCompetitionData?key1=&key2=&pageNo=1&pageSize=20
+指导学生获奖情况
+http://www.nazhisoft.com/uiTeacherEvaluate/getStudentPrizeData?key1=&key2=&key3=257&key4=769&pageNo=1&pageSize=20
+发表论文情况
+http://www.nazhisoft.com/uiTeacherEvaluate/getTeacherPublishPaperData?key1=&key2=&key3=1&pageNo=1&pageSize=20
 
-周三
-设计考勤签到流程，接口
-设计考勤记录流程，接口
 
-周四
-设计请假申请流程接口
-设计请假记录流程接口
-周五
+
+
+#/teacher/school/teacherEvaluate/teacherHonor
+#/teacher/school/teacherEvaluate/teacherSkillsCompetition
+#/teacher/school/teacherEvaluate/teacherStudentPrize
+#/teacher/school/teacherEvaluate/teacherPublishPaper
+
+
+学生信息管理职务
+18900000003
+ff92a240d11b05ebd392348c35f781b2
+
+
+http://localhost:8080/teacher/school/teacherEvaluate/addTeacherHonorData
+certAddress: "Tother/M00/00/05/wKgy-V885CeAFXNnAAANCtrBQ2w900.jpg"
+getTime: "2020/8/19"
+honorLevel: "1"
+honorName: "123"
+selectionUnit: "123"
+teacherId: "54"
+teacherName: "陈晨"
+
+
+
+
+
+http://192.168.50.249/Tother/M00/00/05/wKgy-V8-IsKARH8PAAANCtrBQ2w086.jpg
+
+
+
+
+ReturnResult result = new ReturnResult();
+        result.setCode(1);
+        result.setMsg("操作成功");
+
+        boolean flag = iTeacherHonorService.removeById(id);
+        if (!flag) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();//触发回滚
+            result.setCode(-1);
+            result.setMsg("操作失败");
+            return result;
+        }
