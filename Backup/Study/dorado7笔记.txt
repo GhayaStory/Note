@@ -1,0 +1,16 @@
+在点击事件的时候返回false，就不执行后续操作
+脚本中触发某控件的事件
+btn.fireEvent("onClick");
+判断dataset记录条数
+dataset.getData().entityCount == 1 
+
+setState(1) 新增
+
+如何取消autoform上的数据验证器
+
+绑定控件事件，配置参数时前面不要加换行，会出问题
+
+页面url参数
+
+
+^\d{1,14}(\.\d{1,6})?$

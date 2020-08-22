@@ -1,0 +1,62 @@
+D:\app\Ghaya\product\11.2.0\dbhome_1\NETWORK\ADMIN
+
+
+数据库：ORCL
+SID：orcl
+统一口令：oracle
+
+创建数据库：使用DBCA工具
+https://www.2cto.com/database/201709/677364.html
+命令：DBCA 
+打开数据库管理工具
+
+
+增
+insert into tablename (name,sex,birth,uuid) values ('王伟华','男','1983/6/15',sys_guid)
+删
+delete from tablename where name='王伟华'
+truncate table tablename
+改
+update tablename set age=18 where name='王伟华'
+查
+select name,age from tablename where name=5
+
+物理删除与逻辑删除
+物理删除：指直接用删除语句清除数据
+逻辑删除：指用更新语句，修改某字段标识为已删除，不可用的数据，便于后期可做数据恢复。
+
+
+
+1、创建表空间：
+格式: 
+create tablespace 表间名 datafile '数据文件名' size 表空间大小
+create tablespace data_test datafile 'D:\app\Ghaya\oradata\ORCL\data_1.dbf' size 2000M;
+create tablespace idx_test datafile 'D:\app\Ghaya\oradata\ORCL\idx_1.dbf' size 2000M;
+(*数据文件名 包含全路径, 表空间大小 2000M 表是 2000兆) 
+2、建好tablespace, 就可以建用户了
+格式: 
+create user 用户名 identified by 密码 default tablespace 表空间表;
+create user study identified by study default tablespace data_test;
+(*我们创建一个用户名为 study,密码为 study, 缺少表空间为 data_test -这是在第二步建好的.)
+(*缺省表空间表示 用户study今后的数据如果没有专门指出，其数据就保存在 data_test中, 也就是保存在对应的物理文件 e:\oracle\oradata\test\data_1.dbf中)
+
+创建用户并指定表空间
+CREATE USER cici IDENTIFIED BY cici PROFILE DEFAULT DEFAULT TABLESPACE CICI ACCOUNT UNLOCK;
+create user jykl identified by jykl default tablespace jykl_data temporary tablespace jykl_temp;
+授权给新用户
+GRANT connect, resource TO cici;
+grant create session to cici;
+4. 授权给新用户
+          grant connect,resource to study; 
+          --表示把 connect,resource权限授予study用户
+          grant dba to study;
+          --表示把 dba权限授予给 study
+
+ghaya
+123456
+
+nltax_jabdc@ORCL
+oracle
+
+system
+oracle

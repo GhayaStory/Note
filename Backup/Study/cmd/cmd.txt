@@ -1,0 +1,21 @@
+查看已有网络密码
+
+查询所有
+netsh wlan show profile * key=clear
+
+fjby-bi-2.4G
+查询指定名字wifi
+netsh wlan show profile name="fjby-bi-2.4G" key=clear
+netsh wlan show profile name="Ghaya" key=clear
+netsh wlan show profile name="Fjby-wifi3_5G" key=clear				Fjby@163.com
+netsh wlan show profile name="TP-LINK_88888" key=clear
+netsh wlan show profile name="BOYU_2" key=clear
+netsh wlan show profile name="boyu_2.4G" key=clear
+netsh wlan show profile name="DDDDDDDRRRRR" key=clear
+
+
+查询端口使用情况  (可以根据pid在任务管理器中释放)
+netstat -ao
+
+重置网络修复winsock
+netsh winsock reset

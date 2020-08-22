@@ -1,0 +1,55 @@
+user:	root
+pw:	mysql
+
+登录命令：
+mysql -h localhost -u root -p
+mysql -uroot -pghaya
+
+修改密码：
+ALTER USER 'root'@'localhost' IDENTIFIED BY '123456'
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '新密码';  
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'ghaya';  
+
+1.查看当前有哪些数据库
+show databases;
+2.创建一个新的数据库(设置缺省字符集为utf8)
+create database test01 
+default character set utf8;
+3.使用数据库
+use test01;
+4.查看当前数据库有哪些表
+show tables;
+5.创建表
+create table emp(
+    id int primary key auto_increment,
+    name varchar(50),
+    salary double,
+    age int
+);
+注： auto_increment --自增长列  oracle用seq     mysql要实现序列功能要创建表作为序列表写方法进行获取
+6.
+新增
+insert into emp(name,salary,age) values('Sally',2000,20); --新增
+删除
+delete from emp where 
+更新
+update emp set name='caocao',age=50 where id=1;
+
+
+
+
+mysql 8.0版本后加密规则改变  支持navicat
+
+
+mysql -uroot -ppassword #登录
+
+use mysql; #选择数据库
+# 远程连接请将'localhost'换成'%'
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'password' PASSWORD EXPIRE NEVER; #更改加密方式
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password'; #更新用户密码
+
+FLUSH PRIVILEGES; #刷新权限
+
+
