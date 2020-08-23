@@ -30,6 +30,20 @@ layer.open({
 	
 	}
 });
+-----------------------------------------------------弹窗(输入框)
+layer.prompt({
+	value: '',
+	title: '请输入组名',
+	yes: function (index, layero) {
+		// 获取文本框输入的值
+		var value = layero.find(".layui-layer-input").val();
+		if (value) {
+
+		} else {
+			layer.msg("请输入组名");
+		}
+	}
+});
 -----------------------------------------------------分页
 $("#pageContainer", $mainContainer).nzPager({
 	dataUrl: '_url_fName',  //接口URL
@@ -48,11 +62,12 @@ Nzfe.net.ajaxGetJson(url, {}, function (result) {
 	}
 });
 -----------------------------------------------------post请求
-let tabInitLoad = layer.load(1);
+
 let data = {
 
 };
-let url = '/teacher/fiveEvaluation/additionalQuotaSettings/saveQuotaTypeList';
+let url = '/teacher/fiveEvaluation/activityAnalysis/_fName';
+let tabInitLoad = layer.load(1);
 Nzfe.net.ajaxPostJson(url, JSON.stringify(data), function (result) {
 	layer.close(tabInitLoad);
 	console.log(result);

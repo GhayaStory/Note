@@ -1,0 +1,32 @@
+1.使用Gson.fromJson的转换string字符串的时候
+使用Map<String,Object> Resmap = (Map<String,Obejct>)gson.fromJson(jsonStr,HashMap.class);
+会出现长数字字符串自动转为double类型数据，替换为  单层可用
+Map<String, String> Resmap = gson.fromJson( jsonStr, new TypeToken<Map<String, String>>() { }.getType());
+或者限定之前查出的数据 to_char()
+
+2.urldecode解码
+java.net.URLDecoder.decode("%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%91%98","UTF-8");//系统管理员
+
+
+3.检测一个JAVA程序的运行时间方法：
+long startTime = System.currentTimeMillis();//获取当前时间
+//doSomeThing();   //要运行的java程序
+long endTime = System.currentTimeMillis();
+System.out.println("程序运行时间："+(endTime-startTime)+"ms");
+
+
+4.java代码怎么把科学计数法转换为具体数字
+BigDecimal bd = new BigDecimal("3.40256010353E11");
+然后转换成字符串：
+String str = bd.toPlainString();
+如果这个数字的长度是在int的范围内的话，是可以转换成int类型：
+int a = Integer.parsInt(str);
+如果这个数字的长度不是在Int范围内的话，得到的就不是你想要的数字了！
+
+5.通过jdbc 传参 若参数字段为char，数位不够会自动补空进去  导致都查不到对应数据。
+解决办法，传参要求数位验证，或者改数据库类型
+
+6.java中的字符，字符串，数字之间的转换
+string转换成int  :Integer.valueOf("12")
+int转换成string : String.valueOf(12)
+char转int String.valueOf('2')  Integer.valueOf(str)  / Integer.PaseInt(str)

@@ -1,0 +1,89 @@
+前端---------------------------------------------------
+1.时间选择控件返回到后台带T时间格式处理。
+var form = new mini.Form("#form1");
+            var data = form.getData(true, false);
+            var s = mini.encode(data);
+getData有参数可以指定获取的格式
+第一个设置为true就可以了
+
+2.自定义下拉框
+data=[{id:"01",text:"选项一"},{id:"02",text:"选项二"}]
+传参(建安公用方法):
+url='../../CallCodeList?req=LocalCodeList&codeType=DM_AAAA&source=A&param={"DM_BBBB":"10"}'
+
+3.关于主界面tab页关闭的例子
+http://www.miniui.com/demo/index.html#src=datagrid/hidecolumn.html
+http://www.miniui.com/demo/#src=datagrid/drawcell2.html
+http://www.miniui.com/demo/index.html#src=tabs/buttons.html
+
+*4.鼠标点击弹出页面时，回车会多次触发，需要首次触发时禁用按钮
+
+5.绑定事件
+btnPTask.set({
+	onclick:function(){func()}
+})
+
+6.渲染表格单元格
+zlffyxxGrid.on("drawcell",function(e){
+		var record = e.row,//当前行
+		column = e.column,
+		field = e.field,
+		value = e.value;
+		if(field=="gmfxxcj"){
+			e.cellStyle = "text-align:center";
+			e.cellHtml = '<button type="button" onclick="cjclick()">采集</button>';
+		}
+	});
+
+7.miniui的表格grid下拉闪动，晃动，延迟问题
+去除grid的style中的宽高设定，改成自适应
+
+8.建安框架后台修改为类名.方法全可调用，无法调用时检查  注意修改private 为public才可调用
+
+9.发送请求时全页面加载遮罩,与请求后遮罩隐藏
+var msgid = mini.loading("正在查询","提示")；
+mini.hideMessageBox(msgid);
+
+10.获取不同类型的Grid表格数据
+获取增加、删除、修改后的数据集合。row._state为added/modified/removed。
+getChanges ( state, onlyField )	
+state: added|modified|removed。如传递null，则获取增删改数据。
+onlyField：Boolean。传递true，modified的行数据将只返回修改的字段。	
+
+11.获取页面参数集合
+var obj = mini.getParams();
+
+12.下拉框mini-combobox数据data格式
+data="[{id:'1',text:'住房'},{id:'2',text:'非住房'}]"
+
+
+
+后台---------------------------------------------------------------------  仅限博宇使用的框架
+
+1.无效列索引
+使用jdbc集成的一套存储方法
+whereParameters参数  与 setSql第三个参数中的字段没有相互对应
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

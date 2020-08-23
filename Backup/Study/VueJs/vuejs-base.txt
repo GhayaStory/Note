@@ -1,0 +1,9 @@
+安装vuejs
+打开idea 下方Terminal窗口输入命令
+导入vue
+npm init 在文件夹中初始化npm
+npm install vue -g  全局安装
+npm install vue --save  当前项目安装
+
+差值表达式
+{{name}}  不建议使用  在网速过慢时会直接显示{{name}}一会  差值闪烁

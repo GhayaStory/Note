@@ -20,3 +20,23 @@ student_name: "缪楷晨"
 student_number: "1171004100147"
 term_id: "85"
 type: "2"
+
+
+
+[{
+	classId:1,
+	className:1,
+	weekData:[
+		week1:score1,
+		week2:score2,
+		week3:score3,
+	]
+},{
+	classId:1,
+	className:1,
+	weekData:[
+		week1:score1,
+		week2:score2,
+		week3:score3,
+	]
+}]

@@ -1,21 +1,37 @@
 
 
 
+写实相关修改
 
 
 
 
+档案袋  改成统计多条
+学生写实列表  改成展示多条
 
-classBonusPoint: 1
-content: "1"
-creationTime: (6) [2020, 4, 29, 13, 47, 22]
-creator: 1
-id: 1
-modifier: 0
-modifyTime: (6) [2020, 4, 29, 13, 47, 25]
-name: "1"
-personBonusPoint: 1
-schoolId: 65
-stateType: 1
-stateTypeName: "Сѧ"
-termId: 86
+
+Tother/M00/00/04/wKgy-V8aReqATtL5AAAwAD7gOWY368.xls
+
+
+ 0未出库 1出库未确认 2出库未发放 3已发放未认领 4已认领  5未结算（还在购物车）
+ 
+ 
+ 
+ 根据学生id查询
+ 
+ 
+ 
+ 根据学生id查询班主任信息
+ /teacher/school/use/getMangerInfoByStudentId
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

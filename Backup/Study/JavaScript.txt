@@ -1,0 +1,55 @@
+1.页面传参时中文乱码问题
+//在这里。用encodeURI进行两次转码。后台Action接收的时候。在进行一次。就不会出现乱码问题
+  url = encodeURI(url);
+  url = encodeURI(url);
+
+
+2.获取当前时间并且格式化
+function getNewDate(){
+	var date= new Date();
+	return date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+}
+
+3.list去重
+
+4.js方法同异步问题
+方法异步执行：//1 5 2 3 4
+        console.log( "1" );
+        setTimeout(function() {
+            console.log( "2" )
+        }, 0 );
+        setTimeout(function() {
+            console.log( "3" )
+        }, 0 );
+        setTimeout(function() {
+            console.log( "4" )
+        }, 0 );
+        console.log( "5" );
+方法同步执行：正常方法均为同步执行，如：//1
+  10000*1.5 
+10000*2 3
+        console.log( "1" );
+        function a(){
+                for(var i=0;i<10000;i++){
+	        console.log(1.5);
+                }
+	c();
+        }
+        function b(){
+                console.log( "3" )
+        }
+        function c(){
+                for(var i=0;i<10000;i++){
+	        console.log(2);
+               }
+        }
+        a();
+        b(); 
+
+5.获取页面参数
+function getQueryString(name){
+	var reg = new RegExp("(^|&)"+name+"=([^&]*)(&|$)","i");
+	var r = window.location.serach.substr(1).match(reg);
+	if(r!=null)return decodeURI(r[2]);
+	return null;
+}
